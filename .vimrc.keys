@@ -6,18 +6,125 @@
 " 如果不喜欢这些按键映射,可设置为 0 不使用
 if 1
 
-    " 使用习惯的按键来切换 Tab
-    nmap	<C-Tab>		gt
-    nmap	<C-S-Tab>	gT
-    imap	<C-Tab>		<ESC>gta
-    imap	<C-S-Tab>	<ESC>gTa
+    " The default leader is '\', but many people prefer ',' as it's in a standard
+    " location. To override this behavior and set it back to '\' (or any other
+    " character) add the following to your .vimrc.before.local file:
+    "   let g:option_leader='\'
+    if !exists('g:option_leader')
+        let mapleader = ','
+    else
+        let mapleader=g:option_leader
+    endif
+    if !exists('g:option_localleader')
+        let maplocalleader = '_'
+    else
+        let maplocalleader=g:option_localleader
+    endif
 
-    " 模拟 Windows 的常用按键
-    imap	<C-S>		<ESC>:update<CR>a
-    vmap	<C-C>		"+ygv
-    imap	<C-V>		<ESC>"+pa
-    " cmap	<C-V>		<ESC>"+p
-    imap	<C-Z>		<ESC>ua
+    " Easier moving in tabs and windows
+    " The lines conflict with the default digraph mapping of <C-K>
+    " If you prefer that functionality, add the following to your
+    " .vimrc.before.local file:
+    "   let g:option_no_easy_window_switch = 1
+    if !exists('g:option_no_easy_window_switch')
+        map <C-J> <C-W>j<C-W>_
+        map <C-K> <C-W>k<C-W>_
+        map <C-L> <C-W>l<C-W>_
+        map <C-H> <C-W>h<C-W>_
+    endif
+
+    " Yank from the cursor to the end of the line, to be consistent with C and D.
+    nnoremap Y y$
+
+    " Code folding options
+    nmap <leader>f0 :set foldlevel=0<CR>
+    nmap <leader>f1 :set foldlevel=1<CR>
+    nmap <leader>f2 :set foldlevel=2<CR>
+    nmap <leader>f3 :set foldlevel=3<CR>
+    nmap <leader>f4 :set foldlevel=4<CR>
+    nmap <leader>f5 :set foldlevel=5<CR>
+    nmap <leader>f6 :set foldlevel=6<CR>
+    nmap <leader>f7 :set foldlevel=7<CR>
+    nmap <leader>f8 :set foldlevel=8<CR>
+    nmap <leader>f9 :set foldlevel=9<CR>
+
+    " Most prefer to toggle search highlighting rather than clear the current
+    " search results. To clear search highlighting rather than toggle it on
+    " and off, add the following to your .vimrc.before.local file:
+    "   let g:option_clear_search_highlight = 1
+    if exists('g:option_clear_search_highlight')
+        nmap <silent> <leader>/ :nohlsearch<CR>
+    else
+        nmap <silent> <leader>/ :set invhlsearch<CR>
+    endif
+
+    " Find merge conflict markers
+    map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+
+    " Shortcuts
+    " Change Working Directory to that of the current file
+    cmap cwd lcd %:p:h
+    cmap cd. lcd %:p:h
+
+    " Visual shifting (does not exit Visual mode)
+    vnoremap < <gv
+    vnoremap > >gv
+
+    " Allow using the repeat operator with a visual selection (!)
+    " http://stackoverflow.com/a/8064607/127816
+    vnoremap . :normal .<CR>
+
+    " Fix home and end keybindings for screen, particularly on mac
+    " - for some reason this fixes the arrow keys too. huh.
+    if 0 " this will delay the <esc>
+        map [F $
+        imap [F $
+        map [H g0
+        imap [H g0
+    endif
+
+    " For when you forget to sudo.. Really Write the file.
+    cmap w!! w !sudo tee % >/dev/null
+
+    " Some helpers to edit mode
+    " http://vimcasts.org/e/14
+    cnoremap %% <C-R>=expand('%:h').'/'<cr>
+    map <leader>ew :e %%
+    map <leader>es :sp %%
+    map <leader>ev :vsp %%
+    map <leader>et :tabe %%
+
+    " Adjust viewports to the same size
+    map <Leader>= <C-w>=
+
+    " Map <Leader>ff to display all lines with keyword under cursor
+    " and ask which one to jump to
+    nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+
+    " Easier horizontal scrolling
+    map zl zL
+    map zh zH
+
+    " fullscreen mode for GVIM and Terminal, need 'wmctrl' in you PATH
+    map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
+
+    " 使用习惯的按键来切换 Tab
+    if !exists('g:option_no_easy_tab_switch')
+        map <C-Tab>     gt
+        map <C-S-Tab>   gT
+        map <S-H> gT
+        map <S-L> gt
+    endif
+
+    " 使用习惯的按键来切换 Tab
+    if !exists('g:option_no_windows_like')
+        " 模拟 Windows 的常用按键
+        imap    <C-S>       <ESC>:update<CR>a
+        vmap    <C-C>       "*ygv
+        imap    <C-V>       <ESC>"*pa
+        " cmap  <C-V>       <ESC>"*p
+        imap    <C-Z>       <ESC>ua
+    endif
 
     " 普通模式下 加入新行 不进入插入模式
     nmap <S-Enter> O<ESC>
@@ -29,7 +136,6 @@ if 1
 
     " 手动重新加载配置文件
     command! LRC so $MYVIMRC
-
 
 
 endif

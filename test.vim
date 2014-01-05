@@ -1,0 +1,1 @@
+exists('#fugitive') && echo "find"

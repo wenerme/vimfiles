@@ -3,20 +3,58 @@
 " Setip vundle
 " vundle
 " {
-if exists('vundle')
+if isdirectory(expand('~/.vim/bundle/vundle'))
 
-	filetype off
+    filetype off
+    set rtp+=~/.vim/bundle/vundle
+    call vundle#rc()
+    filetype plugin indent on
 
-	" Setup vundle
-	set rtp+=~./vim/bundle/vundle
-	call vundle#rc()
+    " Use bundles config
+    call TrySource("~/.vim/.vimrc.bundles")
 
-	filetype plugin indent on
+else
+
+    echo 'Seems you vundle is not ready!'
 
 endif
 "}
 
+" if exists('#airline')
+    let g:airline#extensions#tabline#enabled = 1
+    " Use the default set of separators with a few customizations
+    "let g:airline_left_sep='›'  " Slightly fancier than '>'
+    "let g:airline_right_sep='‹' " Slightly fancier than '<'
+    let g:airline_powerline_fonts = 1
 
-" local
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
 
+    " unicode symbols
+    let g:airline_left_sep = '»'
+    let g:airline_left_sep = '▶'
+    let g:airline_right_sep = '«'
+    let g:airline_right_sep = '◀'
+    let g:airline_symbols.linenr = '␊'
+    let g:airline_symbols.linenr = '␤'
+    let g:airline_symbols.linenr = '¶'
+    let g:airline_symbols.branch = '⎇'
+    let g:airline_symbols.paste = 'ρ'
+    let g:airline_symbols.paste = 'Þ'
+    let g:airline_symbols.paste = '∥'
+    let g:airline_symbols.whitespace = 'Ξ'
+
+    " old vim-powerline symbols
+    let g:airline_left_sep = '⮀'
+    let g:airline_left_alt_sep = '⮁'
+    let g:airline_right_sep = '⮂'
+    let g:airline_right_alt_sep = '⮃'
+    let g:airline_symbols.branch = '⭠'
+    let g:airline_symbols.readonly = '⭤'
+    let g:airline_symbols.linenr = '⭡'
+
+" endif
+
+" Load local
 call TrySource("~/.vim/.vimrc.plugins.local")

@@ -1,6 +1,7 @@
 " vim: set ft=vim sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
 
-" Environment {
+" Environment 
+" {
 
     " Identify platform {
         silent function! OSX()
@@ -41,12 +42,6 @@
 
 " }
 
-" Use before config if available
-call TrySource("~/.vim/.vimrc.before")
-
-" Use bundles config
-call TrySource("~/.vim/.vimrc.bundles")
-
 " Encoding Settings
 " {
 
@@ -75,6 +70,13 @@ call TrySource("~/.vim/.vimrc.bundles")
     end
 
 " }
+
+
+" Use before config if available
+call TrySource("~/.vim/.vimrc.before")
+
+" Load plugins
+call TrySource("~/.vim/.vimrc.plugins")
 
 " General
 " {
@@ -191,7 +193,9 @@ call TrySource("~/.vim/.vimrc.bundles")
         " Broken down into easily includeable segments
         set statusline=%<%f\                     " Filename
         set statusline+=%w%h%m%r                 " Options
-        " set statusline+=%{fugitive#statusline()} " Git Hotness
+        if exists('#fugitive')
+            set statusline+=%{fugitive#statusline()} " Git Hotness
+        endif
         set statusline+=\ [%{&ff}/%Y]            " Filetype
         set statusline+=\ [%{getcwd()}]          " Current dir
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
@@ -229,6 +233,7 @@ call TrySource("~/.vim/.vimrc.bundles")
     set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
     set splitright                  " Puts new vsplit windows to the right of the current
     set splitbelow                  " Puts new split windows to the bottom of the current
+    set shellslash
     "set matchpairs+=<:>             " Match, to be used with %
     set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
     "set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
@@ -287,7 +292,7 @@ call TrySource("~/.vim/.vimrc.bundles")
             elseif OSX() && has("gui_running")
                 set guifont=Andale\ Mono\ Regular:h16,Menlo\ Regular:h15,Consolas\ Regular:h16,Courier\ New\ Regular:h18
             elseif WINDOWS() && has("gui_running")
-                set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
+                set guifont=Andale_Mono_for_PowerLine:h10,Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
             endif
         endif
     else
@@ -305,10 +310,6 @@ call TrySource("~/.vim/.vimrc.bundles")
     set directory=~/.vim/tmp
     set backup
 " }
-
-" Load plugins
-call TrySource("~/.vim/.vimrc.plugins")
-
 
 " Load keymaping
 call TrySource("~/.vim/.vimrc.keys")
