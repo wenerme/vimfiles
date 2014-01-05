@@ -1,0 +1,22 @@
+" vim: set ft=vim sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+
+" Setip vundle
+" vundle
+" {
+if exists('vundle')
+
+	filetype off
+
+	" Setup vundle
+	set rtp+=~./vim/bundle/vundle
+	call vundle#rc()
+
+	filetype plugin indent on
+
+endif
+"}
+
+
+" local
+
+call TrySource("~/.vim/.vimrc.plugins.local")

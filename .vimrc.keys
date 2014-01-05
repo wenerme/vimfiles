@@ -1,0 +1,40 @@
+" vim: set ft=vim sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+
+
+" Key mapping
+" {
+" 如果不喜欢这些按键映射,可设置为 0 不使用
+if 1
+
+    " 使用习惯的按键来切换 Tab
+    nmap	<C-Tab>		gt
+    nmap	<C-S-Tab>	gT
+    imap	<C-Tab>		<ESC>gta
+    imap	<C-S-Tab>	<ESC>gTa
+
+    " 模拟 Windows 的常用按键
+    imap	<C-S>		<ESC>:update<CR>a
+    vmap	<C-C>		"+ygv
+    imap	<C-V>		<ESC>"+pa
+    " cmap	<C-V>		<ESC>"+p
+    imap	<C-Z>		<ESC>ua
+
+    " 普通模式下 加入新行 不进入插入模式
+    nmap <S-Enter> O<ESC>
+    nmap <C-Enter> o<ESC>
+
+    " 在编辑模式下也可以直接插入行
+    imap <S-Enter> <Esc>O
+    imap <C-Enter> <Esc>o
+
+    " 手动重新加载配置文件
+    command! LRC so $MYVIMRC
+
+
+
+endif
+
+" }
+
+" Load keys.local
+call TrySource("~/.vim/.vimrc.keys.local")
