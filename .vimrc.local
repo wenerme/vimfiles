@@ -9,8 +9,3 @@ let g:sql_type_default = 'mysql'
 
 " 使用unix文件格式
 set ff=unix
-
-" 颜色设置
-colo molokai
-" 常常使用这个配色 但是注释颜色不明显
-hi Comment guifg=#ABCDEF

@@ -1,4 +1,4 @@
-﻿
+
 我的 VIM 配置
 -------------
 
@@ -69,7 +69,9 @@
 	恢复上次会话编辑时的鼠标位置
 * no_views
 * no_big_font 影响字体设置
-* keep_trailing_whitespace 保留末尾空白
+* keep_trailing_whitespace 保留末尾空白  
+    默认情况下,加载 `c,cpp,java,go,php,javascript,python,twig,xml,yml` 文件时,
+    会自动删除行尾空白
 * leader 设置 <Leader>, 默认 `,`
 * localleader 默认 `_`
 * no_easy_window_switch 不启用简单的窗口切换操作  

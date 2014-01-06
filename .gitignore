@@ -3,4 +3,4 @@ tmp/
 swap/
 *.swp
 *~
-test
+test.vim

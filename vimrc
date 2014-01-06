@@ -23,6 +23,19 @@
             endif
                 return 0
         endfunction
+
+        " 删除行尾空白
+        function! StripTrailingWhitespace()
+                " Preparation: save last search, and cursor position.
+                let _s=@/
+                let l = line(".")
+                let c = col(".")
+                " do the business:
+                %s/\s\+$//e
+                " clean up: restore previous search history, and cursor position
+                let @/=_s
+                call cursor(l, c)
+        endfunction
     " }
 
     " Basics {
@@ -164,13 +177,28 @@ call TrySource("~/.vim/.vimrc.plugins")
         let g:solarized_contrast="normal"
         let g:solarized_visibility="normal"
         color solarized             " Load a colorscheme
+    elseif filereadable(expand("~/.vim/colors/molokai.vim"))
+        color molokai
+        " 常常使用这个配色 但是注释颜色不明显
+        hi Comment guifg=#ABCDEF
+    endif
+
+
+    " 当 IME 可用的时候,高亮光标
+    " 这个光标色适合 molokai
+    if exists('+iminsert')
+        highlight Cursor guibg=Gray guifg=NONE
+        highlight CursorIM guibg=#F8F8F0 guifg=NONE
     endif
 
     set tabpagemax=15               " Only show 15 tabs
     set showmode                    " Display the current mode
 
     set cursorline                  " Highlight current line
-    set cursorcolumn                " Highlight current column
+    " 在终端下高亮列会看不清楚
+    if has('gui_running')
+        set cursorcolumn                " Highlight current column
+    endif
 
     highlight clear SignColumn      " SignColumn should match background
     highlight clear LineNr          " Current line number row will have same background color in relative mode
@@ -204,6 +232,8 @@ call TrySource("~/.vim/.vimrc.plugins")
     set backspace=indent,eol,start  " Backspace for dummies
     set linespace=0                 " No extra spaces between rows
     set nu                          " Line numbers on
+    set rnu                         " Use relativenumber
+    set nuw=1                       " nu and rnu in same column
     set showmatch                   " Show matching brackets/parenthesis
     set incsearch                   " Find as you type search
     set hlsearch                    " Highlight search terms
@@ -242,7 +272,7 @@ call TrySource("~/.vim/.vimrc.plugins")
     " To disable the stripping of whitespace, add the following to your
     " .vimrc.before.local file:
     "   let g:option_keep_trailing_whitespace = 1
-    autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
+    autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> if !exists('g:option_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
     autocmd FileType go autocmd BufWritePre <buffer> Fmt
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
     autocmd FileType haskell setlocal expandtab shiftwidth=2 softtabstop=2
@@ -306,20 +336,27 @@ call TrySource("~/.vim/.vimrc.plugins")
 
 " Misc
 " {
-    set backupdir=~/.vim/tmp/backup//
-    set undodir=~/.vim/tmp/undo//
-    set dir=~/.vim/tmp/swap//
-    set backup
+    " Initialize directories 
+    " {
+    " 因为在 clone repo 的时候已经有这些文件夹了,所以不需要手动创建
+        set backupdir=~/.vim/tmp/backup//
+        set dir=~/.vim/tmp/swap//
+        set backup
+        set writebackup
+
+        if has('persistent_undo')
+            set undodir=~/.vim/tmp/undo//
+        endif
+    " }
 
     "set iminsert=1
     "set imsearch=-1
     "inoremap <ESC> <ESC>:set iminsert=0<CR>
     "set noimd imi=0 ims=0
 
-    if exists('+iminsert')
-        echo "In insert"
-        "highlight Cursor guibg=Green guifg=NONE
-        "highlight CursorIM guibg=Purple guifg=NONE
+    if v:lang =~ 'zh'
+        " 因为 listchars 里有双倍宽度字符,所以不能使用double值
+        "set ambiwidth=double
     endif
 " }
 
