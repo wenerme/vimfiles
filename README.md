@@ -1,81 +1,102 @@
-ÎÒµÄ VIM ÅäÖÃ
+ï»¿
+æˆ‘çš„ VIM é…ç½®
 -------------
 
-»ùÓÚ [spf13 v3.0](https://github.com/spf13/spf13-vim/tree/3.0) ½øĞĞµÄĞŞ¸Ä.
-
-°²×° `git clone https://github.com/wenerme/vimfiles ~/.vim`
+åŸºäº [spf13 v3.0](https://github.com/spf13/spf13-vim/tree/3.0) è¿›è¡Œçš„ä¿®æ”¹.
 
 
-Ö÷ÒªµÄĞŞ¸Ä
+å®‰è£…
+----
+
+1. ä¸‹è½½vimfiles  
+    * `git clone https://github.com/wenerme/vimfiles ~/.vim`
+    * æˆ–è€… ä¸‹è½½[zip](https://github.com/gmarik/vundle/archive/master.zip)
+    ,è§£å‹åˆ°ä½ æƒ³æ”¾çš„åœ°æ–¹
+2. æ­å»ºvundle  
+    `$ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle`
+3. å¯¹äº Windows ç”¨æˆ·,å°† `_vimrc` æ”¾åˆ°ä½ å®‰è£… vim çš„ç›®å½•ä¸­å“¦  
+    ä¾‹å¦‚ä½ çš„ vim å®‰è£…æ–‡ä»¶å¤¹ä¸º `C:\vim\vim74\vim.exe`,
+    åˆ™éœ€è¦å°† `_vimrc` æ”¾åˆ° `C:\vim` å³å¯
+4. æ‰“å¼€ vim, è¿è¡Œ `:BundleInstall` å®‰è£… bundles,å®Œæˆåä»æ–°æ‰“å¼€vimå³å¯.
+5. å¯èƒ½ä½ è¿˜æƒ³ä½¿ç”¨ä¸€ä¸ªæ”¯æŒPowerlineçš„å­—ä½“,æˆ‘ä½¿ç”¨çš„æ˜¯  
+    [AndaleMono-Powerline](https://github.com/wenerme/dotfiles/tree/master/.font#andalemono-powerline)
+
+ä¸»è¦çš„ä¿®æ”¹
 ---------
 
-* ĞŞ¸ÄÒÔÖ§³Ö cygwin
-* ĞŞ¸ÄÒÔÖ§³Ö Windows
-* ½«Ñ¡ÏîµÄ `spf12_` ¸ü¸ÄÎª `option_`
+* ä¿®æ”¹ä»¥æ”¯æŒ cygwin
+* ä¿®æ”¹ä»¥æ”¯æŒ Windows
+* å°†é€‰é¡¹çš„ `spf12_` æ›´æ”¹ä¸º `option_`
 
 
-¹ØÓÚWindowsµÄËµÃ÷
+å…³äºWindowsçš„è¯´æ˜
 ---------------
 
-Èç¹ûÄãÔÚWindowsÏÂÊ¹ÓÃvim,²¢ÇÒÃ»ÓĞÊ¹ÓÃWindowsµÄÄ¬ÈÏHOMEÄ¿Â¼(C:\User\{UserName}),
-ÏëÒª¸ü¸Ä¼ÓÔØÎ»ÖÃÊ±,ÉèÖÃ `_vimrc` ÖĞµÄ `$HOME`,²¢
-½« `_vimrc` ·Åµ½ vim µÄ°²×°Ä¿Â¼,Ëû»áÒıµ¼vimÕıÈ·¼ÓÔØ
+å¦‚æœä½ åœ¨Windowsä¸‹ä½¿ç”¨vim,å¹¶ä¸”æ²¡æœ‰ä½¿ç”¨Windowsçš„é»˜è®¤HOMEç›®å½•(`C:\User\{UserName}`),
 
-.vimrc.* ÅäÖÃÎÄ¼ş
+* è®¾ç½® `_vimrc` ä¸­çš„ `$HOME` ä¸ºä½ çš„ HOME ç›®å½•(ä½ æ”¾`.vim/`çš„åœ°æ–¹).
+* æ·»åŠ  `curl` å’Œ `git` åˆ° `$PATH
+
+
+
+å¦‚æœä½ æƒ³è¦å°† VIM æ·»åŠ åˆ°å³é”®ä¸­,å¯ä»¥ä½¿ç”¨è¿™ä¸ªå°è„šæœ¬ [vim_context_menu](https://github.com/wenerme/vim.ContextMenu).
+
+.vimrc.* é…ç½®æ–‡ä»¶
 ---------------
 
-¼ÓÔØË³Ğò
+åŠ è½½é¡ºåº
 
 * .vimrc.before
-* .vimrc.plugins Ö÷ÒªÓÃÓÚÅäÖÃ²å¼ş
-	* .vimrc.bundle Èç¹û¼ì²âµ½ vundle,Ôò»á¼ÓÔØ
+* .vimrc.plugins ä¸»è¦ç”¨äºé…ç½®æ’ä»¶
+	* .vimrc.bundle å¦‚æœæ£€æµ‹åˆ° vundle,åˆ™ä¼šåŠ è½½
 	* .vimrc.bundle.local
 * .vimrc.plugins.local
-* .vimrc.keys Ö÷ÒªÓÃÓÚÅäÖÃ°´¼ü
+* .vimrc.keys ä¸»è¦ç”¨äºé…ç½®æŒ‰é”®
 * .vimrc.keys.local
 * .vimrc.fork
 * .vimrc.local
 * .gvimrc.local
 
-ËùÓĞ `local` ºó×ºµÄ,¶¼ÊÇÓÃÓÚ¶¨ÖÆµÄ,¿ÉÈÎÒâÉ¾³ı»òĞŞ¸Ä
+æ‰€æœ‰ `local` åç¼€çš„,éƒ½æ˜¯ç”¨äºå®šåˆ¶çš„,å¯ä»»æ„åˆ é™¤æˆ–ä¿®æ”¹
 
-Ñ¡Ïî
+é€‰é¡¹
 ----
 
-ÕâĞ©Ñ¡ÏîĞèÒª·ÅÔÚ `.vimrc.before` ÖĞ²Å»áÉúĞ§,ÒÔÏÂËµÃ÷Ê¡ÂÔ `option_` Ç°×º.
+è¿™äº›é€‰é¡¹éœ€è¦æ”¾åœ¨ `.vimrc.before` ä¸­æ‰ä¼šç”Ÿæ•ˆ,ä»¥ä¸‹è¯´æ˜çœç•¥ `option_` å‰ç¼€.
 
-* no_autochdir ²»Ê¹ÓÃ×Ô¶¯ÇĞ»»µ±Ç°Ä¿Â¼
-* no_restore_cursor ²»»Ö¸´Êó±êÎ»ÖÃ  
-	»Ö¸´ÉÏ´Î»á»°±à¼­Ê±µÄÊó±êÎ»ÖÃ
+* no_autochdir ä¸ä½¿ç”¨è‡ªåŠ¨åˆ‡æ¢å½“å‰ç›®å½•
+* no_restore_cursor ä¸æ¢å¤é¼ æ ‡ä½ç½®  
+	æ¢å¤ä¸Šæ¬¡ä¼šè¯ç¼–è¾‘æ—¶çš„é¼ æ ‡ä½ç½®
 * no_views
-* no_big_font Ó°Ïì×ÖÌåÉèÖÃ
-* keep_trailing_whitespace ±£ÁôÄ©Î²¿Õ°×
-* leader ÉèÖÃ <Leader>, Ä¬ÈÏ `,`
-* localleader Ä¬ÈÏ `_`
-* no_easy_window_switch ²»ÆôÓÃ¼òµ¥µÄ´°¿ÚÇĞ»»²Ù×÷  
-	Ê¹ÓÃ `<C-J/K/L/H>` À´ÒÆ¶¯´°¿Ú½¹µã
-* no_easy_tab_switch ²»ÆôÓÃ¼òµ¥µÄtabÇĞ»»²Ù×÷  
-	Ê¹ÓÃ `<C-Tab>/<C-S-Tab>` À´ÇĞ»»Tab
-* no_windows_like ²»Ê¹ÓÃºÍÎ¢ÈíÀàËÆµÄ²Ù×÷¼ü  
-	Ö÷ÒªÓĞ `<C-S>,<C-C>,<C-V>,<C-Z>` 
-* clear_search_higjtlight Ê¹ÓÃ `<Learder>/` Çå³ıËÑË÷¸ßÁÁ  
-	Ä¬ÈÏÎªÇĞ»»ÊÇ·ñ¸ßÁÁ
+* no_big_font å½±å“å­—ä½“è®¾ç½®
+* keep_trailing_whitespace ä¿ç•™æœ«å°¾ç©ºç™½
+* leader è®¾ç½® <Leader>, é»˜è®¤ `,`
+* localleader é»˜è®¤ `_`
+* no_easy_window_switch ä¸å¯ç”¨ç®€å•çš„çª—å£åˆ‡æ¢æ“ä½œ  
+	ä½¿ç”¨ `<C-J/K/L/H>` æ¥ç§»åŠ¨çª—å£ç„¦ç‚¹
+* no_easy_tab_switch ä¸å¯ç”¨ç®€å•çš„tabåˆ‡æ¢æ“ä½œ  
+	ä½¿ç”¨ `<C-Tab>/<C-S-Tab>` æ¥åˆ‡æ¢Tab
+* no_windows_like ä¸ä½¿ç”¨å’Œå¾®è½¯ç±»ä¼¼çš„æ“ä½œé”®  
+	ä¸»è¦æœ‰ `<C-S>,<C-C>,<C-V>,<C-Z>` 
+* clear_search_higjtlight ä½¿ç”¨ `<Learder>/` æ¸…é™¤æœç´¢é«˜äº®  
+	é»˜è®¤ä¸ºåˆ‡æ¢æ˜¯å¦é«˜äº®
 
-×¢Òâ
+æ³¨æ„
 ----
 
-* ÅäÖÃÀïÕ³Ìù°åµÄ¼Ä´æÆ÷Îª `*`
+* é…ç½®é‡Œç²˜è´´æ¿çš„å¯„å­˜å™¨ä¸º `*`
+* <Leader> é»˜è®¤è®¾ç½®ä¸º `,`,å› ä¸ºè¿™ä¸ªé”®åœ¨ä¸ä¸€æ ·çš„é”®ç›˜ä¸Šä½ç½®æ˜¯å›ºå®šçš„
 
 
-¸¨Öúº¯Êı
+è¾…åŠ©å‡½æ•°
 -------
 
-ÅĞ¶ÏÆ½Ì¨
+åˆ¤æ–­å¹³å°
 
 * WINDOWS
 * LINUX
 * OSX
 
-ÔÓÏî
+æ‚é¡¹
 
-* TrySource(filename) ³¢ÊÔ Source ¸ÃÎÄ¼ş.
+* TrySource(filename) å°è¯• Source è¯¥æ–‡ä»¶.

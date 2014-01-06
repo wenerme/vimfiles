@@ -306,9 +306,21 @@ call TrySource("~/.vim/.vimrc.plugins")
 
 " Misc
 " {
-    set backupdir=~/.vim/tmp
-    set directory=~/.vim/tmp
+    set backupdir=~/.vim/tmp/backup//
+    set undodir=~/.vim/tmp/undo//
+    set dir=~/.vim/tmp/swap//
     set backup
+
+    "set iminsert=1
+    "set imsearch=-1
+    "inoremap <ESC> <ESC>:set iminsert=0<CR>
+    "set noimd imi=0 ims=0
+
+    if exists('+iminsert')
+        echo "In insert"
+        "highlight Cursor guibg=Green guifg=NONE
+        "highlight CursorIM guibg=Purple guifg=NONE
+    endif
 " }
 
 " Load keymaping

@@ -1,4 +1,6 @@
 bundle/
+tmp/
+swap/
 *.swp
 *~
-
+test
