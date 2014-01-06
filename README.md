@@ -78,10 +78,20 @@
 	使用 `<C-J/K/L/H>` 来移动窗口焦点
 * no_easy_tab_switch 不启用简单的tab切换操作  
 	使用 `<C-Tab>/<C-S-Tab>` 来切换Tab
+* no_easy_buffer_switch 不启用简单的buffer切换操作  
+    * 启用后,如果只有一个 TAB,且没有设置`no_easy_tab_switch`,
+    则会使用 切换 Tab 的操作来切换Buffer  
+    * 使用 `<Leader>h/l` 来循环 buffer  
+    `<Leader>j/k` 为最后一个和第一个
 * no_windows_like 不使用和微软类似的操作键  
 	主要有 `<C-S>,<C-C>,<C-V>,<C-Z>` 
 * clear_search_higjtlight 使用 `<Learder>/` 清除搜索高亮  
 	默认为切换是否高亮
+* use_powerline_symbols  
+    如果未设置,则保持默认的符号  
+    可能的值为 new , old, unicode 的组合  
+    分别为使用 新的或旧的 powerline 字符,根据字体决定  
+    不管使用 new 或 old,都建议包含 unicode
 
 注意
 ----

@@ -2,7 +2,6 @@
 
 
 " Key mapping
-" {
 " 如果不喜欢这些按键映射,可设置为 0 不使用
 if 1
 
@@ -114,6 +113,36 @@ if 1
         map <C-S-Tab>   gT
         map <S-H> gT
         map <S-L> gt
+        if !exists('g:option_no_easy_buffer_switch')
+            function! TabOrBufferNavPrev()
+                if tabpagenr('$') == 1
+                    :bN
+                else
+                    :gT
+                endif
+            endfunc
+            function! TabOrBufferNavNext()
+                if tabpagenr('$') == 1
+                    :bn
+                else
+                    :gt
+                endif
+            endfunc
+
+            map <C-S-Tab> :call TabOrBufferNavPrev()<CR>
+            map <C-Tab> :call TabOrBufferNavNext()<CR>
+            map <S-H> :call TabBufferNavPrev()<CR>
+            map <S-L> :call TabBufferNavNext()<CR>
+        endif
+
+    endif
+
+    " 使用易于操作的键来进行buffer切换
+    if !exists('g:option_no_easy_buffer_switch')
+        map <Leader>h  :bN<CR>
+        map <Leader>l  :bn<CR>
+        map <Leader>k  :bfirst<CR>
+        map <Leader>j  :blast<CR>
     endif
 
     " 使用习惯的按键来切换 Tab
@@ -140,7 +169,6 @@ if 1
 
 endif
 
-" }
 
 " Load keys.local
 call TrySource("~/.vim/.vimrc.keys.local")

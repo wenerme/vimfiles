@@ -34,11 +34,11 @@
     " }
 
     " General
-    " {a
+    " {
         Bundle 'tpope/vim-fugitive'
         Bundle 'Lokaltog/vim-easymotion'
-        Bundle 'bling/vim-airline'
         Bundle 'bling/vim-bufferline'
+        Bundle 'bling/vim-airline'
     " }
 
 " }

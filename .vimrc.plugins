@@ -1,6 +1,7 @@
 " vim: set ft=vim sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
 
 " Setip vundle
+
 " vundle
 " {
 if isdirectory(expand('~/.vim/bundle/vundle'))
@@ -20,50 +21,98 @@ else
 endif
 "}
 
-" if exists('#airline')
-    let g:airline#extensions#tabline#enabled = 1
-    " Use the default set of separators with a few customizations
-    "let g:airline_left_sep='›'  " Slightly fancier than '>'
-    "let g:airline_right_sep='‹' " Slightly fancier than '<'
-    let g:airline_powerline_fonts = 1
-
-    if !exists('g:airline_symbols')
-        let g:airline_symbols = {}
-    endif
-
-    " unicode symbols
-    let g:airline_left_sep = '»'
-    let g:airline_left_sep = '▶'
-    let g:airline_right_sep = '«'
-    let g:airline_right_sep = '◀'
-    let g:airline_symbols.linenr = '␊'
-    let g:airline_symbols.linenr = '␤'
-    let g:airline_symbols.linenr = '¶'
-    let g:airline_symbols.branch = '⎇'
-    let g:airline_symbols.paste = 'ρ'
-    let g:airline_symbols.paste = 'Þ'
-    let g:airline_symbols.paste = '∥'
-    let g:airline_symbols.whitespace = 'Ξ'
-
-    " old vim-powerline symbols
-    let g:airline_left_sep = '⮀'
-    let g:airline_left_alt_sep = '⮁'
-    let g:airline_right_sep = '⮂'
-    let g:airline_right_alt_sep = '⮃'
-    let g:airline_symbols.branch = '⭠'
-    let g:airline_symbols.readonly = '⭤'
-    let g:airline_symbols.linenr = '⭡'
-
-" endif
-
 " bufferline
 " {
-
-let g:bufferline_echo = 0
-let g:bufferline_active_buffer_left = '['
-let g:bufferline_active_buffer_right = ']'
-let g:bufferline_show_bufnr = 1
+if IsBundled('vim-bufferline')
+    let g:bufferline_echo = 0
+    " let g:bufferline_active_buffer_left = '['
+    " let g:bufferline_active_buffer_right = ']'
+    let g:bufferline_show_bufnr = 1
+endif
 " }
 
+" Fugitive 
+" {
+if IsBundled('vim-fugitive')
+    nnoremap <silent> <leader>gs :Gstatus<CR>
+    nnoremap <silent> <leader>gd :Gdiff<CR>
+    nnoremap <silent> <leader>gc :Gcommit<CR>
+    nnoremap <silent> <leader>gb :Gblame<CR>
+    nnoremap <silent> <leader>gl :Glog<CR>
+    nnoremap <silent> <leader>gp :Git push<CR>
+    nnoremap <silent> <leader>gr :Gread<CR>
+    nnoremap <silent> <leader>gw :Gwrite<CR>
+    nnoremap <silent> <leader>ge :Gedit<CR>
+    " Mnemonic _i_nteractive
+    nnoremap <silent> <leader>gi :Git add -p %<CR>
+    nnoremap <silent> <leader>gg :SignifyToggle<CR>
+endif
+"}
+
+
+" airline
+" {
+if IsBundled('vim-airline')
+    let g:airline#extensions#tabline#enabled = 1
+    " Use the default set of separators with a few customizations
+    let g:airline_left_sep='›'  " Slightly fancier than '>'
+    let g:airline_right_sep='‹' " Slightly fancier than '<'
+    let g:airline#extensions#tabline#enabled = 1
+
+    if exists('g:option_use_powerline_symbols')
+
+        let g:airline_powerline_fonts = 1
+
+        if !exists('g:airline_symbols')
+            let g:airline_symbols = {}
+        endif
+
+        if g:option_use_powerline_symbols =~ 'unicode'
+            " unicode symbols
+            let g:airline_left_sep = '»'
+            let g:airline_left_sep = '▶'
+            let g:airline_right_sep = '«'
+            let g:airline_right_sep = '◀'
+            let g:airline_symbols.linenr = '␊'
+            let g:airline_symbols.linenr = '␤'
+            let g:airline_symbols.linenr = '¶'
+            let g:airline_symbols.branch = '⎇'
+            let g:airline_symbols.paste = 'ρ'
+            let g:airline_symbols.paste = 'Þ'
+            let g:airline_symbols.paste = '∥'
+            let g:airline_symbols.whitespace = 'Ξ'
+        endif
+
+        if g:option_use_powerline_symbols =~ 'new'
+            " powerline symbols
+            let g:airline_left_sep = ''
+            let g:airline_left_alt_sep = ''
+            let g:airline_right_sep = ''
+            let g:airline_right_alt_sep = ''
+            let g:airline_symbols.branch = ''
+            let g:airline_symbols.readonly = ''
+            let g:airline_symbols.linenr = ''
+        endif
+
+        if g:option_use_powerline_symbols =~ 'old'
+            " old vim-powerline symbols
+            let g:airline_left_sep = '⮀'
+            let g:airline_left_alt_sep = '⮁'
+            let g:airline_right_sep = '⮂'
+            let g:airline_right_alt_sep = '⮃'
+            let g:airline_symbols.branch = '⭠'
+            let g:airline_symbols.readonly = '⭤'
+            let g:airline_symbols.linenr = '⭡'
+        endif
+        " Use the same setting for tabline
+        let g:airline#extensions#tabline#left_sep = g:airline_left_sep
+        let g:airline#extensions#tabline#left_alt_sep = g:airline_left_alt_sep
+        let g:airline#extensions#tabline#right_sep = g:airline_right_sep
+        let g:airline#extensions#tabline#right_alt_sep = g:airline_right_alt_sep
+
+    endif
+endif
+" }
+"
 " Load local
 call TrySource("~/.vim/.vimrc.plugins.local")

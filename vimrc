@@ -36,6 +36,18 @@
                 let @/=_s
                 call cursor(l, c)
         endfunction
+        " 检测是否有该插件
+        func! IsBundled(name)
+            if !exists('g:bundles')
+                return 0
+            endif
+            for l:bundle in g:bundles
+                if l:bundle['name'] == a:name
+                    return 1
+                endif
+            endfor
+            return 0
+        endfunc
     " }
 
     " Basics {
