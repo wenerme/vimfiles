@@ -8,15 +8,23 @@
 安装
 ----
 
+0. 准备 [vim](http://www.vim.org/download.php)
+    * Windows 下最好下载 [OLE 版本](ftp://ftp.vim.org/pub/vim/pc/gvim74ole.zip)
+    ,有很多其他的特性支持
+    * 下载[运行时文件](ftp://ftp.vim.org/pub/vim/pc/vim74rt.zip)
+    * 解压到你想安装的地方
+
 1. 下载vimfiles  
     * `git clone https://github.com/wenerme/vimfiles ~/.vim`
     * 或者 下载[zip](https://github.com/gmarik/vundle/archive/master.zip)
     ,解压到你想放的地方
-2. 搭建vundle  
-    `$ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle`
-3. 对于 Windows 用户,将 `_vimrc` 放到你安装 vim 的目录中哦  
-    例如你的 vim 安装文件夹为 `C:\vim\vim74\vim.exe`,
-    则需要将 `_vimrc` 放到 `C:\vim` 即可
+
+2. 准备vundll
+    * `$ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle`
+    * 或者 下载 [zip](https://github.com/gmarik/vundle/archive/master.zip)
+    , 解压到 `~/.vim/bundle/vundle`
+
+3. 对于 Windows 用户,请先阅读[关于Windows的说明](关于windows的说明)
 4. 打开 vim, 运行 `:BundleInstall` 安装 bundles,完成后从新打开vim即可.
 5. 可能你还想使用一个支持Powerline的字体,我使用的是  
     [AndaleMono-Powerline](https://github.com/wenerme/dotfiles/tree/master/.font#andalemono-powerline)
@@ -27,15 +35,22 @@
 * 修改以支持 cygwin
 * 修改以支持 Windows
 * 将选项的 `spf12_` 更改为 `option_`
+* 修改安装方式,不需要预先下载
+* 修改 Bundle 的载入方式,会自动检测环境中的Bundle进行设置,
+    即便是一个 Bundle 都没有,也是可以的.
 
 
 关于Windows的说明
 ---------------
 
-如果你在Windows下使用vim,并且没有使用Windows的默认HOME目录(`C:\User\{UserName}`),
+在 Windows 下需要进行的准备工作
 
+* 将 `_vimrc` 放到你安装 vim 的目录中,  
+    例如你的 vim 安装文件夹为 `C:\vim\vim74\vim.exe`,
+    则需要将 `_vimrc` 放到 `C:\vim` 即可
 * 设置 `_vimrc` 中的 `$HOME` 为你的 HOME 目录(你放`.vim/`的地方).
 * 添加 `curl` 和 `git` 到 `$PATH
+* 如果在 Cygwin 下使用,设置 `g:option_root_dir` 为 cygwin 的根目录.
 
 
 
@@ -47,12 +62,12 @@
 加载顺序
 
 * .vimrc.before
-* .vimrc.plugins 主要用于配置插件
-	* .vimrc.bundle 如果检测到 vundle,则会加载
-	* .vimrc.bundle.local
-* .vimrc.plugins.local
 * .vimrc.keys 主要用于配置按键
-* .vimrc.keys.local
+    * .vimrc.keys.local
+* .vimrc.plugins 主要用于配置插件
+    * .vimrc.bundle 如果检测到 vundle,则会加载
+        * .vimrc.bundle.local
+    * .vimrc.plugins.local
 * .vimrc.fork
 * .vimrc.local
 * .gvimrc.local
@@ -64,9 +79,13 @@
 
 这些选项需要放在 `.vimrc.before` 中才会生效,以下说明省略 `option_` 前缀.
 
-* no_autochdir 不使用自动切换当前目录
-* no_restore_cursor 不恢复鼠标位置  
-	恢复上次会话编辑时的鼠标位置
+no_autochdir
+: 不使用自动切换当前目录
+
+no_restore_cursor
+: 不恢复鼠标位置
+: 恢复上次会话编辑时的鼠标位置
+
 * no_views
 * no_big_font 影响字体设置
 * keep_trailing_whitespace 保留末尾空白  
@@ -87,11 +106,26 @@
 	主要有 `<C-S>,<C-C>,<C-V>,<C-Z>` 
 * clear_search_higjtlight 使用 `<Learder>/` 清除搜索高亮  
 	默认为切换是否高亮
-* use_powerline_symbols  
-    如果未设置,则保持默认的符号  
-    可能的值为 new , old, unicode 的组合  
-    分别为使用 新的或旧的 powerline 字符,根据字体决定  
-    不管使用 new 或 old,都建议包含 unicode
+use_powerline_symbols
+: 如果未设置,则保持默认的符号  
+: 可能的值为 new , old, unicode 的组合  
+: 分别为使用 新的或旧的 powerline 字符,根据字体决定  
+: 不管使用 new 或 old,都建议包含 unicode
+
+### with_bundles
+
+* 默认值 ['General']
+
+主要用于在启动时加载一系列的 插件,类似于插件套装.
+可能的值为 General,Programming,可以这样添加
+`let g:option_with_bundles += 'Programming'`
+
+或者是 `.vimrc.bundles.{suit}` 这样的文件名中的 `{suit}` 部分.
+
+例如,如果你有 `.vimrc.bundles.js` 在你的 `~/.vim/` 下,则
+`let g:option_with_bundles=['js']` 则会加载该文件.
+
+注意: `.vimrc.bundles.local` 会自动加载
 
 注意
 ----
@@ -112,3 +146,4 @@
 杂项
 
 * TrySource(filename) 尝试 Source 该文件.
+* BundlesFor(name) 和 [with_bundles](#with-bundles) 选项操作相同

@@ -76,6 +76,9 @@
     "   let g:multi_cursor_start_key='+'
 " }
 
+" 默认加载的 bundles
+let g:option_with_bundles = ['General']
+
 " Use fork before if available
 call TrySource('~/.vim/.vimrc.before.fork')
 

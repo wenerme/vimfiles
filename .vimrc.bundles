@@ -66,6 +66,12 @@ function! BundlesFor(n)
     return 0
 endfunc
 
-
 " Load local bundles
 call TrySource("~/.vim/.vimrc.bundles.local")
+
+" Load needed bundles
+if exists('g:option_with_bundles')
+    for s:n in g:option_with_bundles
+        call BundlesFor(s:n)
+    endfor
+endif
