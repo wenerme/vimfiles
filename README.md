@@ -32,12 +32,12 @@
 主要的修改
 ---------
 
-* 修改以支持 cygwin
+* 修改以支持 Cygwin
 * 修改以支持 Windows
 * 将选项的 `spf12_` 更改为 `option_`
 * 修改安装方式,不需要预先下载
 * 修改 Bundle 的载入方式,会自动检测环境中的Bundle进行设置,
-    即便是一个 Bundle 都没有,也是可以的.
+    即便是一个 Bundle 都没有,也是可以使用的.
 
 
 关于Windows的说明
@@ -106,11 +106,13 @@ no_restore_cursor
 	主要有 `<C-S>,<C-C>,<C-V>,<C-Z>` 
 * clear_search_higjtlight 使用 `<Learder>/` 清除搜索高亮  
 	默认为切换是否高亮
-use_powerline_symbols
-: 如果未设置,则保持默认的符号  
-: 可能的值为 new , old, unicode 的组合  
-: 分别为使用 新的或旧的 powerline 字符,根据字体决定  
-: 不管使用 new 或 old,都建议包含 unicode
+
+### use_powerline_symbols
+
+* 如果未设置,则保持默认的符号
+* 可能的值为 new , old, unicode 的组合
+* 分别为使用 新的或旧的 powerline 字符,根据字体决定
+* 不管使用 new 或 old,都建议包含 unicode
 
 ### with_bundles
 
@@ -147,3 +149,16 @@ use_powerline_symbols
 
 * TrySource(filename) 尝试 Source 该文件.
 * BundlesFor(name) 和 [with_bundles](#with-bundles) 选项操作相同
+
+TODO
+----
+
+* 完善 README
+    * 说明选项
+    * 说明按键
+    * 添加的全局函数说明
+* 添加Bundle套件
+    * 添加编程通用的,例如`neocomplete`,`tcomments`等
+    * 添加 `NERDTree`
+    * 为一些插件添加中文文档, [vimcn](https://github.com/vimcn)
+* 实现 Cygwin 下根目录的问题.

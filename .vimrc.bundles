@@ -49,6 +49,16 @@ function! s:BundlesForProgramming()
 endfunc
 " }
 
+" Misc
+" {
+if IsBundled('vundle')
+    " 如果语言是中文,则自动添加 vimcdoc
+    if v:lang =~ 'zh'
+        Bundle 'wenerme/vimcdoc'
+    endif
+endif
+" }
+
 " 加载使用环境
 function! BundlesFor(n)
     let l:fn = 's:BundlesFor'.a:n
@@ -63,6 +73,7 @@ function! BundlesFor(n)
         return 1
     endif
 
+    echo 'Bundles '.a:n.' not found.'
     return 0
 endfunc
 

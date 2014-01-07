@@ -302,7 +302,7 @@ call TrySource("~/.vim/.vimrc.plugins")
     autocmd FileType haskell setlocal nospell
 
     " When save .vimrc, auto reload it
-    autocmd! BufWritePost [._]?vimrc so %
+    autocmd! BufWritePost *vimrc so $MYVIMRC
 " }
 
 " GUI Settings
@@ -373,6 +373,10 @@ call TrySource("~/.vim/.vimrc.plugins")
     if v:lang =~ 'zh'
         " 因为 listchars 里有双倍宽度字符,所以不能使用double值
         "set ambiwidth=double
+    endif
+
+    if exists('g:option_root_dir')
+        let &path.=g:option_root_dir
     endif
 " }
 
