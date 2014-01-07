@@ -100,6 +100,11 @@
 " Use before config if available
 call TrySource("~/.vim/.vimrc.before")
 
+
+" Load keymaping
+" 需要先设置 keymaping,这个会影响插件按键的绑定
+call TrySource("~/.vim/.vimrc.keys")
+
 " Load plugins
 call TrySource("~/.vim/.vimrc.plugins")
 
@@ -196,11 +201,10 @@ call TrySource("~/.vim/.vimrc.plugins")
     endif
 
 
-    " 当 IME 可用的时候,高亮光标
-    " 这个光标色适合 molokai
+    " 当 IME 不可用的时候,使光标颜色更暗淡
     if exists('+iminsert')
+        highlight link CursorIM Cursor
         highlight Cursor guibg=Gray guifg=NONE
-        highlight CursorIM guibg=#F8F8F0 guifg=NONE
     endif
 
     set tabpagemax=15               " Only show 15 tabs
@@ -371,9 +375,6 @@ call TrySource("~/.vim/.vimrc.plugins")
         "set ambiwidth=double
     endif
 " }
-
-" Load keymaping
-call TrySource("~/.vim/.vimrc.keys")
 
 " Load local
 call TrySource("~/.vim/.vimrc.local")

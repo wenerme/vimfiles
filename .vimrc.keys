@@ -108,44 +108,49 @@ if 1
     map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
 
     " 使用习惯的按键来切换 Tab
-    if !exists('g:option_no_easy_tab_switch')
+    " Easy Tab & Buffer Switch
+    " {
+
+    if !exists('g:option_no_easy_buffer_switch') && !exists('g:option_no_easy_tab_switch')
+        map <C-S-Tab> :call TabOrBufferNavPrev()<CR>
+        map <C-Tab> :call TabOrBufferNavNext()<CR>
+    elseif !exists('g:option_no_easy_tab_switch')
         map <C-Tab>     gt
         map <C-S-Tab>   gT
-        map <S-H> gT
-        map <S-L> gt
-        if !exists('g:option_no_easy_buffer_switch')
-            function! TabOrBufferNavPrev()
-                if tabpagenr('$') == 1
-                    :bN
-                else
-                    :gT
-                endif
-            endfunc
-            function! TabOrBufferNavNext()
-                if tabpagenr('$') == 1
-                    :bn
-                else
-                    :gt
-                endif
-            endfunc
-
-            map <C-S-Tab> :call TabOrBufferNavPrev()<CR>
-            map <C-Tab> :call TabOrBufferNavNext()<CR>
-            map <S-H> :call TabBufferNavPrev()<CR>
-            map <S-L> :call TabBufferNavNext()<CR>
-        endif
-
+    elseif !exists('g:option_no_easy_buffer_switch')
+        map <C-Tab>     :bn
+        map <C-S-Tab>   :bN
     endif
 
-    " 使用易于操作的键来进行buffer切换
+    function! TabOrBufferNavPrev()
+        if tabpagenr('$') == 1
+            :bN
+        else
+            :tabN
+        endif
+    endfunc
+
+    function! TabOrBufferNavNext()
+        if tabpagenr('$') == 1
+            :bn
+        else
+            :tabp
+        endif
+    endfunc
+    " }
+
+    " Easy Buffer switch
+    " {
     if !exists('g:option_no_easy_buffer_switch')
         map <Leader>h  :bN<CR>
         map <Leader>l  :bn<CR>
         map <Leader>k  :bfirst<CR>
         map <Leader>j  :blast<CR>
     endif
+    " }
 
-    " 使用习惯的按键来切换 Tab
+    " Windows like
+    " {
     if !exists('g:option_no_windows_like')
         " 模拟 Windows 的常用按键
         imap    <C-S>       <ESC>:update<CR>a
@@ -154,6 +159,7 @@ if 1
         " cmap  <C-V>       <ESC>"*p
         imap    <C-Z>       <ESC>ua
     endif
+    " }
 
     " 普通模式下 加入新行 不进入插入模式
     nmap <S-Enter> O<ESC>

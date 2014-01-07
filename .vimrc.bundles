@@ -14,31 +14,58 @@
     " }
 " }
 
-" Bundles 
+
+" Deps
 " {
-
-    " Deps
-    " {
-        Bundle 'gmarik/vundle'
-        Bundle 'MarcWeber/vim-addon-mw-utils'
-        Bundle 'tomtom/tlib_vim'
-        if executable('ag')
-            Bundle 'mileszs/ack.vim'
-            let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
-        elseif executable('ack-grep')
-            let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-            Bundle 'mileszs/ack.vim'
-        elseif executable('ack')
-            Bundle 'mileszs/ack.vim'
-        endif
-    " }
-
-    " General
-    " {
-        Bundle 'tpope/vim-fugitive'
-        Bundle 'Lokaltog/vim-easymotion'
-        Bundle 'bling/vim-bufferline'
-        Bundle 'bling/vim-airline'
-    " }
-
+    Bundle 'gmarik/vundle'
+    Bundle 'MarcWeber/vim-addon-mw-utils'
+    Bundle 'tomtom/tlib_vim'
+    if executable('ag')
+        Bundle 'mileszs/ack.vim'
+        let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+    elseif executable('ack-grep')
+        let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+        Bundle 'mileszs/ack.vim'
+    elseif executable('ack')
+        Bundle 'mileszs/ack.vim'
+    endif
 " }
+
+" General
+" {
+function! s:BundlesForGeneral()
+    Bundle 'tpope/vim-fugitive'
+    Bundle 'Lokaltog/vim-easymotion'
+    Bundle 'kien/ctrlp.vim'
+    Bundle 'bling/vim-bufferline'
+    Bundle 'bling/vim-airline'
+endfunc
+" }
+
+" Programming
+" {
+function! s:BundlesForProgramming()
+    Bundle 'godlygeek/tabular'
+endfunc
+" }
+
+" 加载使用环境
+function! BundlesFor(n)
+    let l:fn = 's:BundlesFor'.a:n
+    if exists('*'.l:fn)
+        call {l:fn}()
+        return 1
+    endif
+
+    let l:fn = expand('~/.vim/.vimrc.bundles.'.a:n)
+    if filereadable(l:fn)
+        exec 'source '.l:fn
+        return 1
+    endif
+
+    return 0
+endfunc
+
+
+" Load local bundles
+call TrySource("~/.vim/.vimrc.bundles.local")

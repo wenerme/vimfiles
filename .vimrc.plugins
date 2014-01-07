@@ -5,15 +5,16 @@
 " vundle
 " {
 if isdirectory(expand('~/.vim/bundle/vundle'))
+    " 确保这里的只被加载一次
+    if ! IsBundled('vundle')
+        filetype off
+        set rtp+=~/.vim/bundle/vundle
+        call vundle#rc()
+        filetype plugin indent on
 
-    filetype off
-    set rtp+=~/.vim/bundle/vundle
-    call vundle#rc()
-    filetype plugin indent on
-
-    " Use bundles config
-    call TrySource("~/.vim/.vimrc.bundles")
-
+        " Use bundles config
+        call TrySource("~/.vim/.vimrc.bundles")
+    endif
 else
 
     echo 'Seems you vundle is not ready!'
@@ -49,6 +50,25 @@ if IsBundled('vim-fugitive')
 endif
 "}
 
+" Tabularize 
+" {
+if IsBundled('tabular')
+    nmap <Leader>a&      :Tabularize /&<CR>
+    vmap <Leader>a&      :Tabularize /&<CR>
+    nmap <Leader>a=      :Tabularize /=<CR>
+    vmap <Leader>a=      :Tabularize /=<CR>
+    nmap <Leader>a:      :Tabularize /:<CR>
+    vmap <Leader>a:      :Tabularize /:<CR>
+    nmap <Leader>a::     :Tabularize /:\zs<CR>
+    vmap <Leader>a::     :Tabularize /:\zs<CR>
+    nmap <Leader>a,      :Tabularize /,<CR>
+    vmap <Leader>a,      :Tabularize /,<CR>
+    nmap <Leader>a,,     :Tabularize /,\zs<CR>
+    vmap <Leader>a,,     :Tabularize /,\zs<CR>
+    nmap <Leader>a<Bar>  :Tabularize /<Bar><CR>
+    vmap <Leader>a<Bar>  :Tabularize /<Bar><CR>
+endif
+" }
 
 " airline
 " {
