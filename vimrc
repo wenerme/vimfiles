@@ -373,6 +373,8 @@ call TrySource("~/.vim/.vimrc.plugins")
     if v:lang =~ 'zh'
         " 因为 listchars 里有双倍宽度字符,所以不能使用double值
         "set ambiwidth=double
+        " 在中文环境下,拼写检查还不是那么好
+        set nospell
     endif
 
     if exists('g:option_root_dir')

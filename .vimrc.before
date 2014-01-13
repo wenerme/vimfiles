@@ -77,7 +77,7 @@
 " }
 
 " 默认加载的 bundles
-let g:option_with_bundles = ['General']
+let g:option_with_bundles = ['general']
 
 " Use fork before if available
 call TrySource('~/.vim/.vimrc.before.fork')

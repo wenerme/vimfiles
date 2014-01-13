@@ -1,0 +1,11 @@
+" vim: set sw=4 ft=vim ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker:
+" General
+" {
+
+    Bundle 'tpope/vim-fugitive'
+    Bundle 'Lokaltog/vim-easymotion'
+    Bundle 'kien/ctrlp.vim'
+    Bundle 'bling/vim-bufferline'
+    Bundle 'bling/vim-airline'
+
+" }

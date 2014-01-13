@@ -31,23 +31,6 @@
     endif
 " }
 
-" General
-" {
-function! s:BundlesForGeneral()
-    Bundle 'tpope/vim-fugitive'
-    Bundle 'Lokaltog/vim-easymotion'
-    Bundle 'kien/ctrlp.vim'
-    Bundle 'bling/vim-bufferline'
-    Bundle 'bling/vim-airline'
-endfunc
-" }
-
-" Programming
-" {
-function! s:BundlesForProgramming()
-    Bundle 'godlygeek/tabular'
-endfunc
-" }
 
 " Misc
 " {

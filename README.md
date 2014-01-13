@@ -79,33 +79,51 @@
 
 这些选项需要放在 `.vimrc.before` 中才会生效,以下说明省略 `option_` 前缀.
 
-no_autochdir
-: 不使用自动切换当前目录
+### no_autochdir
 
-no_restore_cursor
-: 不恢复鼠标位置
-: 恢复上次会话编辑时的鼠标位置
+不使用自动切换当前目录
+
+### no_restore_cursor
+
+* 不恢复鼠标位置
+* 恢复上次会话编辑时的鼠标位置
 
 * no_views
+
 * no_big_font 影响字体设置
-* keep_trailing_whitespace 保留末尾空白  
-    默认情况下,加载 `c,cpp,java,go,php,javascript,python,twig,xml,yml` 文件时,
-    会自动删除行尾空白
-* leader 设置 <Leader>, 默认 `,`
-* localleader 默认 `_`
-* no_easy_window_switch 不启用简单的窗口切换操作  
-	使用 `<C-J/K/L/H>` 来移动窗口焦点
-* no_easy_tab_switch 不启用简单的tab切换操作  
-	使用 `<C-Tab>/<C-S-Tab>` 来切换Tab
-* no_easy_buffer_switch 不启用简单的buffer切换操作  
+
+### keep_trailing_whitespace 保留末尾空白
+
+默认情况下,加载 `c,cpp,java,go,php,javascript,python,twig,xml,yml` 文件时,
+会自动删除行尾空白
+
+### leader 
+设置 <Leader>, 默认 `,`
+
+### localleader 
+默认 `_`
+### no_easy_window_switch
+
+不启用简单的窗口切换操作
+
+使用 `<C-J/K/L/H>` 来移动窗口焦点
+
+### no_easy_tab_switch & no_easy_buffer_switch
+不启用简单的tab切换操作
+使用 `<C-Tab>/<C-S-Tab>` 来切换Tab
+
+* 不启用简单的buffer切换操作  
     * 启用后,如果只有一个 TAB,且没有设置`no_easy_tab_switch`,
     则会使用 切换 Tab 的操作来切换Buffer  
     * 使用 `<Leader>h/l` 来循环 buffer  
     `<Leader>j/k` 为最后一个和第一个
-* no_windows_like 不使用和微软类似的操作键  
-	主要有 `<C-S>,<C-C>,<C-V>,<C-Z>` 
-* clear_search_higjtlight 使用 `<Learder>/` 清除搜索高亮  
-	默认为切换是否高亮
+### no_windows_like
+    不使用和微软类似的操作键
+    主要有 `<C-S>,<C-C>,<C-V>,<C-Z>`
+### clear_search_higjtlight
+
+使用 `<Learder>/` 清除搜索高亮
+默认为切换是否高亮
 
 ### use_powerline_symbols
 
@@ -116,13 +134,14 @@ no_restore_cursor
 
 ### with_bundles
 
-* 默认值 ['General']
+* 默认值 ['general']
 
 主要用于在启动时加载一系列的 插件,类似于插件套装.
-可能的值为 General,Programming,可以这样添加
-`let g:option_with_bundles += 'Programming'`
 
-或者是 `.vimrc.bundles.{suit}` 这样的文件名中的 `{suit}` 部分.
+可以这样添加
+`let g:option_with_bundles += 'programming'`
+
+可能的值是 `.vimrc.bundles.{suit}` 这样的文件名中的 `{suit}` 部分.
 
 例如,如果你有 `.vimrc.bundles.js` 在你的 `~/.vim/` 下,则
 `let g:option_with_bundles=['js']` 则会加载该文件.
