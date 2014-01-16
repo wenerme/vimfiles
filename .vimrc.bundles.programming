@@ -9,5 +9,28 @@
 
     Bundle 'majutsushi/tagbar'
 
+
 " }
 
+" Snippets & AutoComplete 
+" {
+if g:option_complete_by == 'snipmate'
+    Bundle 'garbas/vim-snipmate'
+    Bundle 'honza/vim-snippets'
+    " Source support_function.vim to support vim-snippets.
+    if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
+        source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
+    endif
+elseif g:option_complete_by == 'youcompleteme'
+    Bundle 'Valloric/YouCompleteMe'
+    Bundle 'SirVer/ultisnips'
+elseif g:option_complete_by == 'neocomplcache'
+    Bundle 'Shougo/neocomplcache'
+    Bundle 'Shougo/neosnippet'
+    Bundle 'honza/vim-snippets'
+elseif g:option_complete_by == 'neocomplete'
+    Bundle 'Shougo/neocomplete.vim'
+    Bundle 'Shougo/neosnippet'
+    Bundle 'honza/vim-snippets'
+endif
+" }

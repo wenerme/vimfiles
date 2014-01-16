@@ -172,6 +172,19 @@ if 1
     " 手动重新加载配置文件
     command! LRC so $MYVIMRC
 
+    " 在自动换行的时候,确保 上下键是一屏幕行
+    map <Up> gk
+    imap <Up> <C-o>gk
+    map <Down> gj
+    imap <Down> <C-o>gj
+
+    " 绑定鼠标滚动操作
+    " Default
+    " map <ScrollWheelUp> <C-Y>
+    map <S-ScrollWheelUp> <C-U>
+    " Default
+    " map <ScrollWheelDown> <C-E>
+    map <S-ScrollWheelDown> <C-D>
 
 endif
 

@@ -136,7 +136,7 @@ if IsBundled('vim-airline')
 endif
 " }
 
-" ctrlp 
+" ctrlp
 " {
 if IsBundled('ctrlp')
     let g:ctrlp_working_path_mode = 'ra'
@@ -165,6 +165,44 @@ if IsBundled('ctrlp')
                 \ }
 endif
 "}
+
+" Tagbar
+" {
+
+
+if IsBundled('Tagbar')
+    " 想要添加 Tagbar 支持,参见这里
+    " https://github.com/majutsushi/tagbar/wiki
+
+    nnoremap <silent> <F9> :TagbarToggle<CR>
+
+    " CSS
+    " {
+    let g:tagbar_type_css = {
+                \ 'ctagstype' : 'Css',
+                \ 'kinds'     : [
+                \ 'c:classes',
+                \ 's:selectors',
+                \ 'i:identities'
+                \ ]
+                \ }
+    " }
+
+    " Markdown 需要修改 ~./.ctags
+    " {
+    let g:tagbar_type_markdown = {
+                \ 'ctagstype' : 'markdown',
+                \ 'kinds' : [
+                \ 'h:Heading_L1',
+                \ 'i:Heading_L2',
+                \ 'k:Heading_L3'
+                \ ]
+                \ }
+    " }
+
+endif
+
+" }
 
 " Load local
 call TrySource("~/.vim/.vimrc.plugins.local")

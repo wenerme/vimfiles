@@ -1,4 +1,4 @@
-" vim: set ft=vim sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+" vim: set ft=vim sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker:
 
 " Environment 
 " {
@@ -62,6 +62,8 @@
         " across (heterogeneous) systems easier.
         if WINDOWS()
           set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+          let $TMP = expand('~/.vim/tmp')
+          let $TEMP = expand('~/.vim/tmp')
         endif
     " }
 
@@ -302,7 +304,7 @@ call TrySource("~/.vim/.vimrc.plugins")
     autocmd FileType haskell setlocal nospell
 
     " When save .vimrc, auto reload it
-    autocmd! BufWritePost *vimrc so $MYVIMRC
+    " autocmd! BufWritePost *vimrc so $MYVIMRC
 " }
 
 " GUI Settings

@@ -19,13 +19,15 @@
     * 或者 下载[zip](https://github.com/gmarik/vundle/archive/master.zip)
     ,解压到你想放的地方
 
-2. 准备vundll
+2. 对于 Windows 用户,请先阅读[关于Windows的说明](关于windows的说明)
+
+3. 准备vundle, 如果你不需要 vundle 等插件,可忽略下列步骤
     * `$ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle`
     * 或者 下载 [zip](https://github.com/gmarik/vundle/archive/master.zip)
     , 解压到 `~/.vim/bundle/vundle`
 
-3. 对于 Windows 用户,请先阅读[关于Windows的说明](关于windows的说明)
-4. 打开 vim, 运行 `:BundleInstall` 安装 bundles,完成后从新打开vim即可.
+4. 打开 vim, 运行 `:BundleInstallAll` 安装所有 bundles,完成后从新打开vim即可
+
 5. 可能你还想使用一个支持Powerline的字体,我使用的是  
     [AndaleMono-Powerline](https://github.com/wenerme/dotfiles/tree/master/.font#andalemono-powerline)
 
@@ -49,14 +51,14 @@
     例如你的 vim 安装文件夹为 `C:\vim\vim74\vim.exe`,
     则需要将 `_vimrc` 放到 `C:\vim` 即可
 * 设置 `_vimrc` 中的 `$HOME` 为你的 HOME 目录(你放`.vim/`的地方).
-* 添加 `curl` 和 `git` 到 `$PATH
+* 如果你需要使用 vundle,在 `_vimrc` 中添加 `curl` 和 `git` 到 `$PATH
 * 如果在 Cygwin 下使用,设置 `g:option_root_dir` 为 cygwin 的根目录.
 
 
 
 如果你想要将 VIM 添加到右键中,可以使用这个小脚本 [vim_context_menu](https://github.com/wenerme/vim.ContextMenu).
 
-.vimrc.* 配置文件
+.vimrc.\* 配置文件
 ---------------
 
 加载顺序
@@ -88,11 +90,11 @@
 * 不恢复鼠标位置
 * 恢复上次会话编辑时的鼠标位置
 
-* no_views
+* no\_views
 
 * no_big_font 影响字体设置
 
-### keep_trailing_whitespace 保留末尾空白
+### keep\_trailing\_whitespace 保留末尾空白
 
 默认情况下,加载 `c,cpp,java,go,php,javascript,python,twig,xml,yml` 文件时,
 会自动删除行尾空白
@@ -148,6 +150,14 @@
 
 注意: `.vimrc.bundles.local` 会自动加载
 
+### complete_by
+
+* 默认值 'neocomplete'
+
+用于补全的方法,可能的值为 neocomplete,neocomplcache,youcompleteme,snipmate
+
+如果选项为 neocomplete 但是没有lua支持,则会回滚到 neocomplcache
+
 注意
 ----
 
@@ -177,7 +187,86 @@ TODO
     * 说明按键
     * 添加的全局函数说明
 * 添加Bundle套件
-    * 添加编程通用的,例如`neocomplete`,`tcomments`等
+    * 添加编程通用的,例如`neocomplete`,`tcomments, snippets等
     * 添加 `NERDTree`
     * 为一些插件添加中文文档, [vimcn](https://github.com/vimcn)
 * 实现 Cygwin 下根目录的问题.
+
+插件使用简介
+============
+
+这里主要说一些常用插件的操作,类似于 airline 这样的外观插件
+就不做介绍了.
+
+Tagbar
+------
+
+* 官网: [majutsushi/tagbar](https://github.com/majutsushi/tagbar)
+* 简介: 显示大纲
+* 快捷键: `<F9>`
+* 备注:
+> 想要添加 Tagbar 支持,参见[这里](https://github.com/majutsushi/tagbar/wiki)
+
+
+ctrlp
+-----
+
+* 官网: [kien/ctrlp.vim](https://github.com/kien/ctrlp.vim)
+* 简介: 搜索器,用于搜索最近使用文件,目录中的文件,buffer
+* 快捷键: `<C-p>`
+
+vim-fugitive
+------------
+
+* 官网; [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
+* 简介: 集成 git 操作到 vim 中
+* 操作:
+`help fugitive-commands`
+* 映射的快捷键:
+```viml
+    nnoremap <silent> <leader>gs :Gstatus<CR>
+    nnoremap <silent> <leader>gd :Gdiff<CR>
+    nnoremap <silent> <leader>gc :Gcommit<CR>
+    nnoremap <silent> <leader>gb :Gblame<CR>
+    nnoremap <silent> <leader>gl :Glog<CR>
+    nnoremap <silent> <leader>gp :Git push<CR>
+    nnoremap <silent> <leader>gr :Gread<CR>
+    nnoremap <silent> <leader>gw :Gwrite<CR>
+    nnoremap <silent> <leader>ge :Gedit<CR>
+    nnoremap <silent> <leader>gi :Git add -p %<CR>
+    nnoremap <silent> <leader>gg :SignifyToggle<CR>
+```
+
+tabular
+--------
+
+* 官网: [godlygeek/tabular](https://github.com/godlygeek/tabular)
+* 简介: 对齐
+* 映射的快捷键:
+```viml
+    nmap <Leader>a&      :Tabularize /&<CR>
+    vmap <Leader>a&      :Tabularize /&<CR>
+    nmap <Leader>a=      :Tabularize /=<CR>
+    vmap <Leader>a=      :Tabularize /=<CR>
+    nmap <Leader>a:      :Tabularize /:<CR>
+    vmap <Leader>a:      :Tabularize /:<CR>
+    nmap <Leader>a::     :Tabularize /:\zs<CR>
+    vmap <Leader>a::     :Tabularize /:\zs<CR>
+    nmap <Leader>a,      :Tabularize /,<CR>
+    vmap <Leader>a,      :Tabularize /,<CR>
+    nmap <Leader>a,,     :Tabularize /,\zs<CR>
+    vmap <Leader>a,,     :Tabularize /,\zs<CR>
+    nmap <Leader>a<Bar>  :Tabularize /<Bar><CR>
+    vmap <Leader>a<Bar>  :Tabularize /<Bar><CR>
+```
+
+easymotion
+----------
+
+* 官网: [Lokaltog/vim-easymotion](https://github.com/Lokaltog/vim-easymotion)
+* 简介: 快速跳转
+* 备注:
+> 例如: `<Leader><Leader>w` 会显示所有 `w` 单位的操作,
+> 然后键入那个位置的字母即可跳转.
+> 同理: `<Leader><Leader>f:` 会显示 所有 `f:` 的位置
+

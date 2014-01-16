@@ -1,54 +1,55 @@
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker:
 
 " Environment 
 " {
-    " Add an UnBundle command 
-    " {
-        function! UnBundle(arg, ...)
-          let bundle = vundle#config#init_bundle(a:arg, a:000)
-          call filter(g:bundles, 'v:val["name_spec"] != "' . a:arg . '"')
-        endfunction
+" 确保有该变量
+if !exists('g:option_with_bundles')
+    let g:option_with_bundles = []
+endif
+" Add an UnBundle command 
+" {
+function! UnBundle(arg, ...)
+    let bundle = vundle#config#init_bundle(a:arg, a:000)
+    call filter(g:bundles, 'v:val["name_spec"] != "' . a:arg . '"')
+endfunction
 
-        com! -nargs=+         UnBundle
-        \ call UnBundle(<args>)
-    " }
+com! -nargs=+         UnBundle
+            \ call UnBundle(<args>)
+" }
 " }
 
 
 " Deps
 " {
-    Bundle 'gmarik/vundle'
-    Bundle 'MarcWeber/vim-addon-mw-utils'
-    Bundle 'tomtom/tlib_vim'
-    if executable('ag')
-        Bundle 'mileszs/ack.vim'
-        let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
-    elseif executable('ack-grep')
-        let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-        Bundle 'mileszs/ack.vim'
-    elseif executable('ack')
-        Bundle 'mileszs/ack.vim'
-    endif
+Bundle 'gmarik/vundle'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+if executable('ag')
+    Bundle 'mileszs/ack.vim'
+    let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+elseif executable('ack-grep')
+    let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+    Bundle 'mileszs/ack.vim'
+elseif executable('ack')
+    Bundle 'mileszs/ack.vim'
+endif
 " }
 
 
 " Misc
 " {
 if IsBundled('vundle')
+
     " 如果语言是中文,则自动添加 vimcdoc
     if v:lang =~ 'zh'
         Bundle 'wenerme/vimcdoc'
     endif
+
 endif
 " }
 
-" 加载使用环境
+" 加载使用的Bundles套件
 function! BundlesFor(n)
-    let l:fn = 's:BundlesFor'.a:n
-    if exists('*'.l:fn)
-        call {l:fn}()
-        return 1
-    endif
 
     let l:fn = expand('~/.vim/.vimrc.bundles.'.a:n)
     if filereadable(l:fn)
@@ -56,9 +57,27 @@ function! BundlesFor(n)
         return 1
     endif
 
+    let l:fn = 's:BundlesFor'.a:n
+    if exists('*'.l:fn)
+        call {l:fn}()
+        return 1
+    endif
+
     echo 'Bundles '.a:n.' not found.'
     return 0
 endfunc
+
+" 安装所有的 Bundle
+function! BundleInstallAll()
+    let l:list = glob('~/.vim/.vimrc.bundles.*',0,1)
+    for l:f in l:list
+        exec 'source '.l:f
+    endfor
+    :BundleInstall
+endfunc
+
+com! -nargs=0 BundleInstallAll
+            \ call BundleInstallAll()
 
 " Load local bundles
 call TrySource("~/.vim/.vimrc.bundles.local")

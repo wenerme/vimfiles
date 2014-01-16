@@ -1,3 +1,5 @@
 
 " 使用 powerline
 let g:option_use_powerline_symbols='unicode|old'
+
+let g:option_with_bundles += ['programming']
