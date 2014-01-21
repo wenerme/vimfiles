@@ -158,13 +158,15 @@ if 1
         imap    <C-V>       <ESC>"*pa
         " cmap  <C-V>       <ESC>"*p
         imap    <C-Z>       <ESC>ua
+        imap    <C-A>       <ESC>ggVG
     endif
     " }
 
     " 普通模式下 加入新行 不进入插入模式
-    nmap <S-Enter> O<ESC>
-    nmap <C-Enter> o<ESC>
-
+    "nmap <S-Enter> O<ESC>
+    "nmap <C-Enter> o<ESC>
+    nmap <S-Enter> put! =''
+    nmap <C-Enter> put =''
     " 在编辑模式下也可以直接插入行
     imap <S-Enter> <Esc>O
     imap <C-Enter> <Esc>o
@@ -177,7 +179,7 @@ if 1
     imap <Up> <C-o>gk
     map <Down> gj
     imap <Down> <C-o>gj
-
+    
     " 绑定鼠标滚动操作
     " Default
     " map <ScrollWheelUp> <C-Y>
@@ -185,7 +187,13 @@ if 1
     " Default
     " map <ScrollWheelDown> <C-E>
     map <S-ScrollWheelDown> <C-D>
-
+    
+    " 使用 <Tab> 和 <S-Tab> 来进行缩进
+    inoremap <S-Tab> <C-O><LT><LT>
+    nnoremap <Tab> >>
+    nnoremap <S-Tab> <LT><LT>
+    vnoremap <Tab> >
+    vnoremap <S-Tab> <LT>
 endif
 
 

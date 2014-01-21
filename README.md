@@ -51,7 +51,7 @@
     例如你的 vim 安装文件夹为 `C:\vim\vim74\vim.exe`,
     则需要将 `_vimrc` 放到 `C:\vim` 即可
 * 设置 `_vimrc` 中的 `$HOME` 为你的 HOME 目录(你放`.vim/`的地方).
-* 如果你需要使用 vundle,在 `_vimrc` 中添加 `curl` 和 `git` 到 `$PATH
+* 如果你需要使用 vundle,在 `_vimrc` 中添加 `curl` 和 `git` 到 `$PATH`
 * 如果在 Cygwin 下使用,设置 `g:option_root_dir` 为 cygwin 的根目录.
 
 
@@ -119,6 +119,10 @@
     则会使用 切换 Tab 的操作来切换Buffer  
     * 使用 `<Leader>h/l` 来循环 buffer  
     `<Leader>j/k` 为最后一个和第一个
+
+切换buffer的快捷键 `:<num><C-^>` 可直接使用buffer num 来切换,
+或者`<C-^>`来回切换
+
 ### no_windows_like
     不使用和微软类似的操作键
     主要有 `<C-S>,<C-C>,<C-V>,<C-Z>`
@@ -187,10 +191,12 @@ TODO
     * 说明按键
     * 添加的全局函数说明
 * 添加Bundle套件
-    * 添加编程通用的,例如`neocomplete`,`tcomments, snippets等
+    * 添加编程通用的,例如`neocomplete`,`tcomments`, `snippets`等
     * 添加 `NERDTree`
-    * 为一些插件添加中文文档, [vimcn](https://github.com/vimcn)
+	* Html
+    * 考虑为一些插件添加中文文档, [vimcn](https://github.com/vimcn)
 * 实现 Cygwin 下根目录的问题.
+* airline和tagbar一起的时候 发生无法加载 iconv.dll 库,因为没有iconv.dll
 
 插件使用简介
 ============
