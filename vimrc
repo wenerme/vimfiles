@@ -331,9 +331,14 @@ call TrySource("~/.vim/.vimrc.plugins")
         " b = 底部的（水平）滚动条总是存在
         " h = 限制水平滚动条的大小为光标所在行的长度
         " v = 对话框使用垂直的按钮布局
-        set guioptions-=T           " Remove the toolbar
+        set guioptions-=T
+        set guioptions-=m
 
-        set lines=40                " 40 lines of text instead of 24
+        " 窗口尺寸
+        set lines=33
+        set co=88
+
+        " TODO 这个选项是没必要的
         if !exists("g:option_no_big_font")
             if LINUX() && has("gui_running")
                 set guifont=Andale\ Mono\ Regular\ 16,Menlo\ Regular\ 15,Consolas\ Regular\ 16,Courier\ New\ Regular\ 18
