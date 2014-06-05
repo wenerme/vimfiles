@@ -17,7 +17,7 @@ if isdirectory(expand('~/.vim/bundle/vundle'))
     endif
 else
 
-    echo 'Seems you vundle is not ready!'
+    " echo 'Seems you vundle is not ready!'
 
 endif
 "}

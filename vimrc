@@ -250,7 +250,9 @@ call TrySource("~/.vim/.vimrc.plugins")
     set backspace=indent,eol,start  " Backspace for dummies
     set linespace=0                 " No extra spaces between rows
     set nu                          " Line numbers on
-    set rnu                         " Use relativenumber
+    if version >= 703
+        set rnu                         " Use relativenumber
+    endif
     set nuw=1                       " nu and rnu in same column
     set showmatch                   " Show matching brackets/parenthesis
     set incsearch                   " Find as you type search
@@ -267,10 +269,10 @@ call TrySource("~/.vim/.vimrc.plugins")
     set list
     set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
-" }
+    " }
 
-" Formatting
-" {
+    " Formatting
+    " {
 
     set nowrap                      " Do not wrap long lines
     set autoindent                  " Indent at the same level of the previous line
@@ -305,10 +307,10 @@ call TrySource("~/.vim/.vimrc.plugins")
 
     " When save .vimrc, auto reload it
     " autocmd! BufWritePost *vimrc so $MYVIMRC
-" }
+    " }
 
-" GUI Settings
-" {
+    " GUI Settings
+    " {
 
     " GVIM- (here instead of .gvimrc)
     if has('gui_running')
@@ -355,21 +357,21 @@ call TrySource("~/.vim/.vimrc.plugins")
         "set term=builtin_ansi       " Make arrow and other keys work
     endif
 
-" }
+    " }
 
-" Misc
-" {
+    " Misc
+    " {
     " Initialize directories 
     " {
     " 因为在 clone repo 的时候已经有这些文件夹了,所以不需要手动创建
-        set backupdir=~/.vim/tmp/backup//
-        set dir=~/.vim/tmp/swap//
-        set backup
-        set writebackup
+    set backupdir=~/.vim/tmp/backup//
+    set dir=~/.vim/tmp/swap//
+    set backup
+    set writebackup
 
-        if has('persistent_undo')
-            set undodir=~/.vim/tmp/undo//
-        endif
+    if has('persistent_undo')
+        set undodir=~/.vim/tmp/undo//
+    endif
     " }
 
     "set iminsert=1
@@ -387,7 +389,7 @@ call TrySource("~/.vim/.vimrc.plugins")
     if exists('g:option_root_dir')
         let &path.=g:option_root_dir
     endif
-" }
+    " }
 
-" Load local
-call TrySource("~/.vim/.vimrc.local")
+    " Load local
+    call TrySource("~/.vim/.vimrc.local")
